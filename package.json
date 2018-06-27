@@ -1,0 +1,11 @@
+{
+  "name": "kh-popover",
+  "main": "src/Popover.vue",
+  "version": "0.1.3",
+  "description": "A Vue.js component for Popover",
+  "author": "Anas El ALAMI",
+  "license": "MIT",
+  "repository": { },
+  "devDependencies": { },
+  "keywords": ["vuejs","vue","popover","vuejs-popover","kh-popover"]
+}
