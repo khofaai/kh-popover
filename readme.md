@@ -19,24 +19,25 @@ npm i kh-popover
 ```javascript
 import KhPopover from 'kh-popover';
 export default {
-
 	components:{
 		'kh-popover':KhPopover
 	}
-
 }
 ```
-**Attributes**
-- user : Object. of { id, name, photo, avatar, email }
-- trigger : String. accept two options ['hover','click'] // default : 'hover'
-- name : Boolean. to display given user's name // default : false
-- icon : Boolean. to display avatar // defaukt : true
+##Attributes
 
-**Actions**
+- **_user_** : Object. of { id, name, photo, avatar, email }
+- **_trigger_** : String. accept two options ['hover','click'] `// default : 'hover'`
+- **_name_** : Boolean. to display given user's name `// default : false`
+- **_icon_** : Boolean. to display avatar `// defaukt : true`
+
+##Actions
+
 - @action : ..
 
-**Slots**
-- avatar : where avatar located
-- content : where popover core is located ( include both [ content_info, content_actions ])
-- content_info : where popover header is located
-- content_actions : where popover footer is located
+##Slots
+
+- **_avatar_** : where avatar located
+- **_content_** : where popover core is located ( include both [ content_info, content_actions ])
+- **_content_info_** : where popover header is located
+- **_content_actions_** : where popover footer is located
