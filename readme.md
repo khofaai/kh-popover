@@ -16,6 +16,12 @@ as all npm packages :
 npm i kh-popover
 ```
 
+as all yarn packages : 
+
+```
+yarn add kh-popover
+```
+
 ## Usage
 
 ```javascript
