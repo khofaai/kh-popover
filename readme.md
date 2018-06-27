@@ -24,18 +24,19 @@ export default {
 	}
 }
 ```
-##Attributes
+
+## Attributes
 
 - **_user_** : Object. of { id, name, photo, avatar, email }
 - **_trigger_** : String. accept two options ['hover','click'] `// default : 'hover'`
 - **_name_** : Boolean. to display given user's name `// default : false`
 - **_icon_** : Boolean. to display avatar `// defaukt : true`
 
-##Actions
+## Actions
 
-- @action : ..
+- **_action_** : ..
 
-##Slots
+## Slots
 
 - **_avatar_** : where avatar located
 - **_content_** : where popover core is located ( include both [ content_info, content_actions ])
