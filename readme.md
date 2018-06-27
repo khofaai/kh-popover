@@ -2,7 +2,8 @@
 
 popover build for vuejs framework
 
-npm link : [kh-popover](https://www.npmjs.com/package/kh-popover)
+npm link : [npm kh-popover](https://www.npmjs.com/package/kh-popover)
+yarn link : [yarn kh-popover](https://yarnpkg.com/en/package/kh-popover)
 
 ## Getting Started
 
