@@ -1,4 +1,10 @@
-# Kh-popover
+<p align="center">
+	<h1>Kh-Popover</h1>
+  	<a href="https://www.npmjs.com/package/kh-popover"><img src="https://img.shields.io/badge/kh--popover-dev(beta)-orange.svg" alt="Build Status"></a>
+  	<a href="https://www.npmjs.com/package/kh-popover"><img src="https://img.shields.io/badge/npm-v0.1.8-orange.svg" alt="Coverage Status"></a>
+  	<a href="https://www.npmjs.com/package/kh-popover"><img src="https://img.shields.io/badge/licence-mit-green.svg" alt="Coverage Status"></a>
+  	<br>
+</p>
 
 popover build for vuejs framework
 
