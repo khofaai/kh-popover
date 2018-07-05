@@ -14,15 +14,7 @@
 				@mouseover="setHoverPopoverPosition">
 				<slot name="avatar">
 					
-					<a href="javascript:;">
-						<span v-if=" user.photo == '' " 
-							  class="inline-team-avatar radius-all" >
-							{{ user.avatar }}
-						</span>
-						<img v-else
-							 :src="getImage(user.photo)" 
-							 class="inline-team-avatar radius-all" />
-					</a>
+					<PHeader :photo="user.photo" :avatar="user.avatar"></PHeader>
 				</slot>
 			</div>
 			<transition name="fade-fast">
@@ -30,7 +22,7 @@
 					v-show="active" 
 					@mouseleave="triggerHover(false)" 
 					@mouseover="triggerHover(true)" 
-					 class="user_popover" 
+					 class="kh_popover" 
 					:class="rand" 
 					:style="{
 						'top': top,
@@ -39,57 +31,14 @@
 				
 					<span class="popover_header"></span>
 					<span 
-						 class='user_popover_arrow' 
+						 class='kh_popover_arrow' 
 						:class="Ppos" 
 						:style="{
 							'left': left_arrow_pos,
 							'top': top_arrow_pos
 						}"></span>
 					<slot name="content">
-						<div class="user_popover_content">
-							<div class="user_popover_infos">
-								<slot name="content_info">
-									<div class="user_popover_avatar radius-all">
-
-										<span v-if=" user.photo == '' " 
-											  class="img-circle team-small-avatar">{{ user.avatar }}</span>
-										
-										<img  v-else 
-											  :src="getImage(user.photo)" 
-											   class="team-small-avatar" 
-											  :class="{'img-circle':checkBase(user.photo)}" />
-									</div>
-									<h4 class="user_popover_name">{{ user.name }}</h4>
-									<h5 class="user_popover_position">{{ user.position }}</h5>
-								</slot>
-							</div>
-							<slot name="content_actions">
-								<div v-if="user.type == 'user'"
-									 class="user_popover_actions" >
-									
-									<a  @click="emitActions('edit')" 
-										href="javascript:;">
-										
-										<i class="fa fa-edit"></i> {{ $trans.get('edit') }}
-									</a>
-									<a  @click="emitActions('activity')" 
-										href="javascript:;">
-										
-										<i class="fa fa-eye"></i> {{ $trans.get('activity') }}
-									</a>
-									<a  @click="emitActions('remove')" 
-										href="javascript:;">
-										
-										<i class="fa fa-ban"></i> {{ $trans.get('remove') }}
-									</a>
-								</div>
-								<div v-else 
-									 class="user_popover_actions">
-
-									{{ user.email }}
-								</div>
-							</slot>
-						</div>
+						<PContent :user="user"></PContent>
 					</slot>
 				</div>
 			</transition>
@@ -103,20 +52,25 @@
 	</div>
 </template>
 <script>
+	
+	import PContent from './partials/content.vue';
+	import PHeader from './partials/header.vue';
 
 	export default {
 		name:'Popover',
+		components:{
+			PContent,
+			PHeader
+		},
 		props:{
 			user:{
 				default:() => {
 					return {
 						id:0,
 						photo:'',
-						name:'user name',
+						name:'header name',
 						avatar:'UN',
-						email:'user@name.knt',
-						position:'',
-						role_id:2
+						email:'action@name.kh'
 					}
 				}
 			},
@@ -153,14 +107,46 @@
 			}
 		},
 		methods:{
-			str_random() {
-				var text = "";
-				var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+			str_random(str_length = 5) {
+				var rand_str = "";
+				var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-				for (var i = 0; i < 5; i++)
-					text += possible.charAt(Math.floor(Math.random() * possible.length));
+				for (var i = 0; i < str_length; i++)
+					rand_str += chars.charAt(Math.floor(Math.random() * chars.length));
 
-				return text;
+				return rand_str;
+			},
+			setPopoverTopPosition (top, topOffset, cal_marg, _left) { 
+				
+				this.Ppos = 'top';
+				let cal_top = parseInt( top + topOffset - this.Pheight );
+				this.top = cal_top + this.unite;
+
+				this.left = ( cal_marg + ( cal_marg == 0 ? 10 : -10 ) ) + this.unite;
+
+				this.left_arrow_pos =  parseInt( ( this.Pwidth/2 ) - this.calc_marg + _left ) + this.unite;
+
+				this.top_arrow_pos = ( cal_top + this.Pheight - 20 ) + this.unite;
+
+			},
+			setPopoverBottomPosition (top, topOffset, cal_marg, _left) { 
+				let width = window.outerWidth;
+				let marg = 40;
+				if (width - _left < this.Pwidth) {
+					cal_marg -= 10;
+				} else if (_left < 0) {
+					cal_marg += 10;
+				}
+
+				this.Ppos = 'bottom';
+
+				this.top = parseInt( top + 40 + topOffset ) + this.unite;
+
+				this.left_arrow_pos = parseInt( ( this.Pwidth/2 ) - this.calc_marg + _left - cal_marg ) + this.unite;
+
+				this.top_arrow_pos = '-' + this.calc_marg + this.unite;
+
+				this.left = cal_marg + this.unite;
 			},
 			setPopoverPosition() {
 
@@ -169,7 +155,6 @@
 				let pos = doc.querySelector('.'+this.randUser).getBoundingClientRect();
 				let topOffset = doc.documentElement.scrollTop;
 				let width = window.outerWidth;
-
 				
 				let cal_left = parseInt(pos.left-109);
 				let _left = cal_left;
@@ -186,28 +171,21 @@
 					
 					cal_marg = 0;
 				}
+				if (this.Ppos == 'auto') {
 
-				if (window.outerHeight-pos.top < this.Pheight) {
-					
-					this.Ppos = 'top';
+					if (window.outerHeight-pos.top-this.Pheight < this.Pheight) {
+						
+						this.setPopoverTopPosition (pos.top, topOffset, cal_marg, _left);
+					} else {
 
-					this.top = parseInt(pos.top+topOffset - this.Pheight)+this.unite;
+						this.setPopoverBottomPosition (pos.top, topOffset, cal_marg, _left);
+					}
+				} else if ( this.Ppos == 'top') {
 
-					this.left = (cal_marg+(cal_marg == 0 ? 10 : -10))+this.unite;
-
-					this.left_arrow_pos =  parseInt( (this.Pwidth/2)-this.calc_marg+_left)+this.unite;
-
+					this.setPopoverTopPosition (pos.top, topOffset, cal_marg, _left);
 				} else {
-				
-					this.Ppos = 'bottom';
 
-					this.top = parseInt(pos.top+40+topOffset)+this.unite;
-
-					this.left_arrow_pos = parseInt((this.Pwidth/2)-this.calc_marg+_left-cal_marg)+this.unite;
-
-					this.top_arrow_pos = '-'+this.calc_marg+this.unite;
-
-					this.left = cal_marg+this.unite;
+					this.setPopoverBottomPosition (pos.top, topOffset, cal_marg, _left);
 				}
 			},
 			setClickPopoverPosition() {
@@ -265,14 +243,9 @@
 				this.active = false;
 				document.getElementById('app').removeEventListener('click',this.hide);
 			},
-			emitActions(element) {
+			catchActions(action) {
 
-				this.$emit('action', { 
-					action : element,
-					name : this.user.name,
-					role_id : this.user.role_id,
-					user_client_id : this.user.user_client_id
-				});
+				console.log(action)
 			},
 			setClass() {
 
@@ -289,19 +262,20 @@
 					_class += 'kh-popover inline-team-item';
 				}
 				return _class;
+			},
+
+			init_khpopover() {
+				const doc = document;
+				var userPopover = doc.querySelector('.'+this.rand);
+
+				doc.querySelector('.'+this.rand).outerHtml = '';
+				doc.querySelector('body').appendChild(userPopover);
+
+				this.Ppos = this.position;
 			}
 		},	
 		mounted() {
-
-			const doc = document;
-			var userPopover = doc.querySelector('.'+this.rand);
-
-			doc.querySelector('.'+this.rand).outerHtml = '';
-			doc.querySelector('body').appendChild(userPopover);
-
-			if (this.position != 'auto') {
-				this.Ppos = this.position;
-			}
+			this.init_khpopover();
 		}
 	}
 </script>
@@ -316,31 +290,31 @@
 		{opacity: 0}
 	.popover_header
 		{position: absolute;background: transparent;padding: 10px 124px;left: 0;top: -20px;}
-	.user_popover
-		{position: absolute;z-index: 999;width: 242px;left:-108px;box-shadow: 0px 0px 3px 0px rgba(93,86,249,.5);}
-	.user_popover_arrow.bottom
-		{width: 0; height: 0; border-left: 10px solid transparent;border-right: 10px solid transparent;border-bottom: 10px solid #5d56f9;left: 46%;top: -10px;position: absolute;z-index: 1;}
-	.user_popover_arrow.top
-		{width: 0; height: 0; border-left: 10px solid transparent;border-right: 10px solid transparent;border-top: 10px solid #5d56f9;position: fixed;bottom: 15px;top:auto;/*left:46%;*/}
-	.user_popover_infos 
+	.kh_popover
+		{position: absolute;z-index: 999;width: 242px;left:-108px;box-shadow: 0px 0px 3px 0px rgba(51,51,51,.5);}
+	.kh_popover_arrow.bottom
+		{width: 0; height: 0; border-left: 10px solid transparent;border-right: 10px solid transparent;border-bottom: 10px solid #333;left: 46%;top: -10px;position: absolute;z-index: 1;}
+	.kh_popover_arrow.top
+		{width: 0; height: 0; border-left: 10px solid transparent;border-right: 10px solid transparent;border-top: 10px solid #333;position: fixed;bottom: 15px;top:auto;/*left:46%;*/}
+	.kh_popover_infos 
 		{background: #f9f9f9;padding: 15px 15px;}
-	.user_popover_avatar 
+	.kh_popover_avatar 
 		{width: 40px;height: 40px;display: block;position: relative;border: 0;box-sizing: initial;background-color: #999;color: #fff;cursor: pointer;margin: 0 auto 10px;}
-	.user_popover_avatar img 
+	.kh_popover_avatar img 
 		{height: 100%;width: 100%;display: inline-block;}
-	.user_popover_name 
+	.kh_popover_name 
 		{color: #222;text-transform: capitalize;font-family: "FaktProBold";font-size: 17px;margin-bottom: 5px;}
-	.user_popover_position 
+	.kh_popover_position 
 		{display: block;text-transform: capitalize;font-family: "FaktProMedium";font-size: 14px;color: #949ba2;margin-bottom: 5px;}
-	.user_popover_content 
+	.kh_popover_content 
 		{text-align: center;-webkit-border-radius: 4px;-ms-border-radius: 4px;border-radius: 4px;overflow: hidden;position: relative;}
-	.user_popover_actions 
+	.kh_popover_actions 
 		{position: relative;padding: 10px 15px;word-break: break-all;background: #fff;}
-	.user_popover_actions a 
+	.kh_popover_actions a 
 		{text-transform: capitalize;font-size: 13px;}
-	.user_popover_actions a i 
+	.kh_popover_actions a i 
 		{vertical-align: -1px;font-size: 90%;margin-right: 1px;}
-	.user_popover_avatar .team-small-avatar 
+	.kh_popover_avatar .team-small-avatar 
 		{display: block;text-align: center;font-size: 15px;font-weight: 700;line-height: 41px;text-transform: uppercase;}
 	.popover-wrapper
 		{display: inline-block;margin-right: 2px;}

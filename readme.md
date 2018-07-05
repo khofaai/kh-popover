@@ -1,15 +1,15 @@
 <p align="center">
 	<h1>Kh-Popover</h1>
-  	<a href="https://www.npmjs.com/package/kh-popover"><img src="https://img.shields.io/badge/kh--popover-dev(beta)-orange.svg" alt="Build Status"></a>
-  	<a href="https://www.npmjs.com/package/kh-popover"><img src="https://img.shields.io/badge/npm-v0.1.8-orange.svg" alt="Coverage Status"></a>
-  	<a href="https://www.npmjs.com/package/kh-popover"><img src="https://img.shields.io/badge/licence-mit-green.svg" alt="Coverage Status"></a>
+  	<a href="https://www.npmjs.com/package/kh-popover" target="_blank"><img src="https://img.shields.io/badge/kh--popover-dev(beta)-orange.svg" alt="Build Status"></a>
+  	<a href="https://www.npmjs.com/package/kh-popover" target="_blank"><img src="https://img.shields.io/badge/npm-v0.1.8-orange.svg" alt="Coverage Status"></a>
+  	<a href="https://www.npmjs.com/package/kh-popover" target="_blank"><img src="https://img.shields.io/badge/licence-mit-green.svg" alt="Coverage Status"></a>
   	<br>
 </p>
 
 popover build for vuejs framework
 
-npm link : [npm kh-popover](https://www.npmjs.com/package/kh-popover)
-yarn link : [yarn kh-popover](https://yarnpkg.com/en/package/kh-popover)
+npm link  : <a href="https://www.npmjs.com/package/kh-popover" target="_blank">kh-popover</a> <br>
+yarn link : <a href="https://yarnpkg.com/en/package/kh-popover" target="_blank">kh-popover</a>
 
 ## Getting Started
 
@@ -43,6 +43,7 @@ export default {
 ## Attributes
 
 - **_user_** : Object. of { id, name, photo, avatar, email }
+- **_position_** : String. define popover position ['auto','top','bottom'] `// defaukt : auto`
 - **_trigger_** : String. accept two options ['hover','click'] `// default : 'hover'`
 - **_name_** : Boolean. to display given user's name `// default : false`
 - **_icon_** : Boolean. to display avatar `// defaukt : true`
