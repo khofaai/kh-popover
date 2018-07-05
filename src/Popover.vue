@@ -14,7 +14,15 @@
 				@mouseover="setHoverPopoverPosition">
 				<slot name="avatar">
 					
-					<PHeader :photo="user.photo" :avatar="user.avatar"></PHeader>
+				    <a href="javascript:;">
+				        <span v-if=" user.photo == '' " 
+				                class="inline-team-avatar radius-all" >
+				            {{ user.avatar }}
+				        </span>
+				        <img  v-else
+				                :src="$parent.getImage(user.photo)" 
+				                class="inline-team-avatar radius-all" />
+				    </a>
 				</slot>
 			</div>
 			<transition name="fade-fast">
@@ -38,7 +46,51 @@
 							'top': top_arrow_pos
 						}"></span>
 					<slot name="content">
-						<PContent :user="user"></PContent>
+
+					    <div class="kh_popover_content">
+					        <div class="kh_popover_infos">
+					            <slot name="content_info">
+					                <div class="kh_popover_avatar radius-all">
+
+					                    <span v-if=" user.photo == '' " 
+					                            class="img-circle team-small-avatar">{{ user.avatar }}</span>
+					                    
+					                    <img  v-else 
+					                            :src="$parent.getImage(user.photo)" 
+					                            class="team-small-avatar" 
+					                            :class="{'img-circle':$parent.checkBase(user.photo)}" />
+					                </div>
+					                <h4 class="kh_popover_name">{{ user.name }}</h4>
+					                <h5 class="kh_popover_position">{{ user.position }}</h5>
+					            </slot>
+					        </div>
+					        <slot name="content_actions">
+
+					            <div v-if="user.type == 'user'"
+					                    class="kh_popover_actions" >
+					                
+					                <a  @click="emitActions('edit')" 
+					                    href="javascript:;">
+					                    
+					                    <i class="fa fa-edit"></i> edit
+					                </a>
+					                <a  @click="emitActions('activity')" 
+					                    href="javascript:;">
+					                    
+					                    <i class="fa fa-eye"></i> activity
+					                </a>
+					                <a  @click="emitActions('remove')" 
+					                    href="javascript:;">
+					                    
+					                    <i class="fa fa-ban"></i> remove
+					                </a>
+					            </div>
+					            <div v-else class="kh_popover_actions">
+
+					                {{ user.email }}
+					            </div>
+					        </slot>
+					    </div>
 					</slot>
 				</div>
 			</transition>
@@ -52,16 +104,9 @@
 	</div>
 </template>
 <script>
-	
-	import PContent from './partials/content.vue';
-	import PHeader from './partials/header.vue';
 
 	export default {
 		name:'Popover',
-		components:{
-			PContent,
-			PHeader
-		},
 		props:{
 			user:{
 				default:() => {
