@@ -1,15 +1,18 @@
+## README
+
 <p align="center">
 	<h1>Kh-Popover</h1>
   	<a href="https://www.npmjs.com/package/kh-popover" target="_blank"><img src="https://img.shields.io/badge/kh--popover-dev(beta)-orange.svg" alt="Build Status"></a>
-  	<a href="https://www.npmjs.com/package/kh-popover" target="_blank"><img src="https://img.shields.io/badge/npm-v0.1.8-orange.svg" alt="Coverage Status"></a>
+  	<a href="https://www.npmjs.com/package/kh-popover" target="_blank"><img src="https://img.shields.io/badge/npm-v0.2.0-orange.svg" alt="Coverage Status"></a>
   	<a href="https://www.npmjs.com/package/kh-popover" target="_blank"><img src="https://img.shields.io/badge/licence-mit-green.svg" alt="Coverage Status"></a>
   	<br>
 </p>
 
-popover build for vuejs framework
+popover build for vuejs framework. 
 
-npm link  : <a href="https://www.npmjs.com/package/kh-popover" target="_blank">kh-popover</a> <br>
-yarn link : <a href="https://yarnpkg.com/en/package/kh-popover" target="_blank">kh-popover</a>
+**kh-popover** package links :
+	- <a href="https://www.npmjs.com/package/kh-popover" target="_blank">npm</a>
+	- <a href="https://yarnpkg.com/en/package/kh-popover" target="_blank">yarn</a>
 
 ## Getting Started
 
@@ -17,13 +20,13 @@ this packages still in dev mode ( after all this is my first package x) )
 
 ## Installing
 
-as all npm packages : 
+npm installation : 
 
 ```
 npm i kh-popover
 ```
 
-as all yarn packages : 
+yarn installation : 
 
 ```
 yarn add kh-popover
@@ -43,9 +46,9 @@ export default {
 ## Attributes
 
 - **_user_** : Object. of { id, name, photo, avatar, email }
-- **_position_** : String. define popover position ['auto','top','bottom'] `// defaukt : auto`
-- **_trigger_** : String. accept two options ['hover','click'] `// default : 'hover'`
-- **_name_** : Boolean. to display given user's name `// default : false`
+- **_position_** : String. define popover position ['auto','top','bottom'] `// defaukt : auto > adapted to be centred in screen`
+- **_trigger_** : String. accept two options ['hover','click'] `// default : 'hover' > popover displayed on hover event`
+- **_name_** : Boolean. to display given user's name `// default : false it will show avatar not user name`
 - **_icon_** : Boolean. to display avatar `// defaukt : true`
 
 ## Actions

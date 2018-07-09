@@ -1,17 +1,20 @@
 {
   "name": "kh-popover",
   "main": "src/Popover.vue",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A Vue.js component for Popover",
   "author": "Anas El ALAMI",
   "license": "MIT",
-  "repository": {},
-  "devDependencies": {},
+  "repository": { 
+    "type" : "git", 
+    "url" : "https://github.com/khofaai/kh-popover"
+  },
   "keywords": [
     "vuejs",
-    "vue",
     "popover",
+    "vue",
     "vuejs-popover",
+    "vuejs-component",
     "kh-popover"
   ],
   "files": [
