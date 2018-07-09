@@ -3,8 +3,7 @@
 		@mouseleave="triggerHover(false)" 
 		@mouseover="triggerHover(true)" 
 		class="popover-wrapper" 
-		:class="randUser">
-		
+		:class="randUser">	
 		<div :class="classPopoverCore()">
 			
 			<div 
@@ -94,7 +93,7 @@
 				</div>
 			</transition>
 		</div>
-		<b  v-if="name" 
+		<b v-if="name" 
 			class="popover-name" 
 			@click="setClickPopoverPosition" 
 			@mouseover="setHoverPopoverPosition">
@@ -103,7 +102,6 @@
 	</div>
 </template>
 <script>
-
 	export default {
 		name:'Popover',
 		props:{
@@ -304,23 +302,24 @@
 </script>
 <style>
 	.avatar-slot {cursor: pointer;}
-	.fade-fast-enter-active, .fade-fast-leave-active {transition-property: opacity;transition-duration: .3s;}
-	.fade-fast-enter-active {transition-delay: .2s;}
-	.fade-fast-enter, .fade-fast-leave-active {opacity: 0}
+	.popover-name {padding: 5px 0;}
+	.popover-wrapper {display: inline-block;margin-right: 2px;}
 	.popover_header {position: absolute;background: transparent;padding: 10px 124px;left: 0;top: -20px;}
 	.kh_popover {position: absolute;z-index: 999;width: 242px;left:-108px;box-shadow: 0px 0px 3px 0px rgba(51,51,51,.5);}
-	.kh_popover_arrow.bottom {width: 0; height: 0; border-left: 10px solid transparent;border-right: 10px solid transparent;border-bottom: 10px solid #333;left: 46%;top: -10px;position: absolute;z-index: 1;}
-	.kh_popover_arrow.top {width: 0; height: 0; border-left: 10px solid transparent;border-right: 10px solid transparent;border-top: 10px solid #333;position: fixed;bottom: 15px;top:auto;/*left:46%;*/}
-	.kh_popover_infos {background: #f9f9f9;padding: 15px 15px;}
+	.kh_popover_arrow {width: 0; height: 0; border-left: 10px solid transparent;border-right: 10px solid transparent;}
+	.kh_popover_arrow.bottom {border-bottom: 10px solid #333;left: 46%;top: -10px;position: absolute;z-index: 1;}
+	.kh_popover_arrow.top {border-top: 10px solid #333;position: fixed;bottom: 15px;top:auto;}
 	.kh_popover_avatar {width: 40px;height: 40px;display: block;position: relative;border: 0;box-sizing: initial;background-color: #999;color: #fff;cursor: pointer;margin: 0 auto 10px;}
 	.kh_popover_avatar img {height: 100%;width: 100%;display: inline-block;}
-	.kh_popover_name {color: #222;text-transform: capitalize;font-family: "FaktProBold";font-size: 17px;margin-bottom: 5px;}
-	.kh_popover_position {display: block;text-transform: capitalize;font-family: "FaktProMedium";font-size: 14px;color: #949ba2;margin-bottom: 5px;}
-	.kh_popover_content {text-align: center;-webkit-border-radius: 4px;-ms-border-radius: 4px;border-radius: 4px;overflow: hidden;position: relative;}
+	.kh_popover_avatar .team-small-avatar {display: block;text-align: center;font-size: 15px;font-weight: 700;line-height: 41px;text-transform: uppercase;}
 	.kh_popover_actions {position: relative;padding: 10px 15px;word-break: break-all;background: #fff;}
 	.kh_popover_actions a {text-transform: capitalize;font-size: 13px;}
 	.kh_popover_actions a i {vertical-align: -1px;font-size: 90%;margin-right: 1px;}
-	.kh_popover_avatar .team-small-avatar {display: block;text-align: center;font-size: 15px;font-weight: 700;line-height: 41px;text-transform: uppercase;}
-	.popover-wrapper {display: inline-block;margin-right: 2px;}
-	.popover-name {padding: 5px 0;}
+	.kh_popover_infos {background: #f9f9f9;padding: 15px 15px;}
+	.kh_popover_name {color: #222;text-transform: capitalize;font-family: "FaktProBold";font-size: 17px;margin-bottom: 5px;}
+	.kh_popover_position {display: block;text-transform: capitalize;font-family: "FaktProMedium";font-size: 14px;color: #949ba2;margin-bottom: 5px;}
+	.kh_popover_content {text-align: center;-webkit-border-radius: 4px;-ms-border-radius: 4px;border-radius: 4px;overflow: hidden;position: relative;}
+	.fade-fast-enter-active {transition-delay: .2s;}
+	.fade-fast-enter, .fade-fast-leave-active {opacity: 0}
+	.fade-fast-enter-active, .fade-fast-leave-active {transition-property: opacity;transition-duration: .3s;}
 </style>

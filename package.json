@@ -1,8 +1,8 @@
 {
   "name": "kh-popover",
   "main": "src/Popover.vue",
-  "version": "0.3.0",
-  "description": "A Vue.js component for Popover",
+  "version": "0.3.1",
+  "description": "A Vue.js component for Popover/Tooltip",
   "author": "Anas El ALAMI",
   "license": "MIT",
   "repository": { 
@@ -12,8 +12,10 @@
   "keywords": [
     "vuejs",
     "popover",
+    "tooltip",
     "vue",
     "vuejs-popover",
+    "vuejs-tooltip",
     "vuejs-component",
     "kh-popover"
   ],
