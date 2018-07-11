@@ -34,22 +34,22 @@
 						'top': top,
 						'left': left
 					}"
-					class = "kh_popover" >
+					class = "kh-popover" >
 				
-					<span class = "popover_header"></span>
+					<span class = "popover-header"></span>
 					<span 
 						:class = "Ppos" 
 						:style = "{
 							'left': left_arrow_pos,
 							'top': top_arrow_pos
 						}"
-						class = "kh_popover_arrow"></span>
+						class = "kh-popover-arrow"></span>
 					<slot name = "content">
 
-						<div class = "kh_popover_content">
-							<div class = "kh_popover_infos">
+						<div class = "kh-popover-content">
+							<div class = "kh-popover-infos">
 								<slot name = "content_info">
-									<div class = "kh_popover_avatar radius-all">
+									<div class = "kh-popover-avatar radius-all">
 
 										<span v-if = "user.photo == ''" 
 												class = "img-circle team-small-avatar">{{ user.avatar }}</span>
@@ -58,13 +58,13 @@
 												:src = "user.photo" 
 												class = "team-small-avatar img-circle"/>
 									</div>
-									<h4 class = "kh_popover_name">{{ user.name }}</h4>
-									<h5 class = "kh_popover_position">{{ user.position }}</h5>
+									<h4 class = "kh-popover-name">{{ user.name }}</h4>
+									<h5 class = "kh-popover-position">{{ user.position }}</h5>
 								</slot>
 							</div>
 							<slot name = "content_actions">
 
-								<div class = "kh_popover_actions">
+								<div class = "kh-popover-actions">
 
 									{{ user.email }}
 								</div>
@@ -132,7 +132,7 @@
 				trigger_options:['hover','click'],
 				active:false,
 				rand :'popover_'+random,
-				randUser :'kh_popover_'+random,
+				randUser :'kh-popover_'+random,
 				top:-500,
 				left:-500,
 				left_arrow_pos:'',
@@ -315,21 +315,21 @@
 	.avatar-slot {cursor: pointer;}
 	.popover-name {padding: 5px 0;}
 	.popover-wrapper {display: inline-block;margin-right: 2px;}
-	.popover_header {position: absolute;background: transparent;padding: 10px 124px;left: 0;top: -20px;}
-	.kh_popover {position: absolute;z-index: 999;width: 242px;left:-108px;box-shadow: 0px 0px 3px 0px rgba(51,51,51,.5);}
-	.kh_popover_arrow {width: 0; height: 0; border-left: 10px solid transparent;border-right: 10px solid transparent;}
-	.kh_popover_arrow.bottom {border-bottom: 10px solid #333;left: 46%;top: -10px;position: absolute;z-index: 1;}
-	.kh_popover_arrow.top {border-top: 10px solid #333;position: fixed;bottom: 15px;top:auto;}
-	.kh_popover_avatar {width: 40px;height: 40px;display: block;position: relative;border: 0;box-sizing: initial;background-color: #999;color: #fff;cursor: pointer;margin: 0 auto 10px;}
-	.kh_popover_avatar img {height: 100%;width: 100%;display: inline-block;}
-	.kh_popover_avatar .team-small-avatar {display: block;text-align: center;font-size: 15px;font-weight: 700;line-height: 41px;text-transform: uppercase;}
-	.kh_popover_actions {position: relative;padding: 10px 15px;word-break: break-all;background: #fff;}
-	.kh_popover_actions a {text-transform: capitalize;font-size: 13px;}
-	.kh_popover_actions a i {vertical-align: -1px;font-size: 90%;margin-right: 1px;}
-	.kh_popover_infos {background: #f9f9f9;padding: 15px 15px;}
-	.kh_popover_name {color: #222;text-transform: capitalize;font-family: "FaktProBold";font-size: 17px;margin-bottom: 5px;}
-	.kh_popover_position {display: block;text-transform: capitalize;font-family: "FaktProMedium";font-size: 14px;color: #949ba2;margin-bottom: 5px;}
-	.kh_popover_content {text-align: center;-webkit-border-radius: 4px;-ms-border-radius: 4px;border-radius: 4px;overflow: hidden;position: relative;}
+	.popover-header {position: absolute;background: transparent;padding: 10px 124px;left: 0;top: -20px;}
+	.kh-popover {position: absolute;z-index: 999;width: 242px;left:-108px;box-shadow: 0px 0px 3px 0px rgba(51,51,51,.5);}
+	.kh-popover-arrow {width: 0; height: 0; border-left: 10px solid transparent;border-right: 10px solid transparent;}
+	.kh-popover-arrow.bottom {border-bottom: 10px solid #333;left: 46%;top: -10px;position: absolute;z-index: 1;}
+	.kh-popover-arrow.top {border-top: 10px solid #333;position: fixed;bottom: 15px;top:auto;}
+	.kh-popover-avatar {width: 40px;height: 40px;display: block;position: relative;border: 0;box-sizing: initial;background-color: #999;color: #fff;cursor: pointer;margin: 0 auto 10px;}
+	.kh-popover-avatar img {height: 100%;width: 100%;display: inline-block;}
+	.kh-popover-avatar .team-small-avatar {display: block;text-align: center;font-size: 15px;font-weight: 700;line-height: 41px;text-transform: uppercase;}
+	.kh-popover-actions {position: relative;padding: 10px 15px;word-break: break-all;background: #fff;}
+	.kh-popover-actions a {text-transform: capitalize;font-size: 13px;}
+	.kh-popover-actions a i {vertical-align: -1px;font-size: 90%;margin-right: 1px;}
+	.kh-popover-infos {background: #f9f9f9;padding: 15px 15px;}
+	.kh-popover-name {color: #222;text-transform: capitalize;font-family: "FaktProBold";font-size: 17px;margin-bottom: 5px;}
+	.kh-popover-position {display: block;text-transform: capitalize;font-family: "FaktProMedium";font-size: 14px;color: #949ba2;margin-bottom: 5px;}
+	.kh-popover-content {text-align: center;-webkit-border-radius: 4px;-ms-border-radius: 4px;border-radius: 4px;overflow: hidden;position: relative;}
 	.fade-fast-enter-active {transition-delay: .2s;}
 	.fade-fast-enter, .fade-fast-leave-active {opacity: 0}
 	.fade-fast-enter-active, .fade-fast-leave-active {transition-property: opacity;transition-duration: .3s;}
