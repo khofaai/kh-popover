@@ -259,10 +259,10 @@
 				this.$emit('action',{action,user});
 			},
 			setClassPopoverContainer() {
-
-				if (this.icon) {
-					cls += 'kh-popover inline-team-item';
-				}
+				let cls = '';
+				
+				if (this.icon) cls += 'kh-popover inline-team-item';
+				
 				return cls;
 			},
 			detectIfMobileOrTablet() {
@@ -295,7 +295,7 @@
 				}
 			},
 			initKhPopover() {
-
+				console.log(this.rand)
 				var userPopover = document.querySelector('.'+this.rand);
 
 				userPopover.outerHtml = '';
