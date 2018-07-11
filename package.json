@@ -1,7 +1,7 @@
 {
   "name": "kh-popover",
   "main": "src/Popover.vue",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "A Vue.js component for Popover/Tooltip",
   "author": "Anas El ALAMI",
   "license": "MIT",

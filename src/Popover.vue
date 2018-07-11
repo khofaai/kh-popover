@@ -1,89 +1,70 @@
 <template>
 	<div 
-		@mouseleave="triggerHover(false)" 
-		@mouseover="triggerHover(true)" 
-		class="popover-wrapper" 
-		:class="randUser">	
-		<div :class="classPopoverCore()">
+		@mouseleave = "triggerHover(false)" 
+		@mouseover = "triggerHover(true)"
+		:class = "randUser" 
+		class = "popover-wrapper" >	
+		<div :class = "setClassPopoverContainer()">
 			
 			<div 
-				v-if="icon"
-				class="avatar-slot"  
-				@click="setClickPopoverPosition" 
-				@mouseover="setHoverPopoverPosition">
-				<slot name="avatar">
+				v-if = "icon"
+				@click = "setClickPopoverPosition" 
+				@mouseover = "setHoverPopoverPosition"
+				class = "avatar-slot" >
+				<slot name = "avatar">
 					
-					<a href="javascript:;">
-						<span v-if=" user.photo == '' " 
-								class="inline-team-avatar radius-all" >
+					<a href = "javascript:;">
+						<span v-if = "user.photo == ''" 
+								class = "inline-team-avatar radius-all" >
 							{{ user.avatar }}
 						</span>
 						<img  v-else
-								:src="$parent.getImage(user.photo)" 
-								class="inline-team-avatar radius-all" />
+								:src = "user.photo" 
+								class = "inline-team-avatar radius-all" />
 					</a>
 				</slot>
 			</div>
-			<transition name="fade-fast">
+			<transition name = "fade-fast">
 				<div 
-					v-show="active" 
-					@mouseleave="triggerHover(false)" 
-					@mouseover="triggerHover(true)" 
-					 class="kh_popover" 
-					:class="rand" 
-					:style="{
+					v-show = "active" 
+					@mouseleave = "triggerHover(false)" 
+					@mouseover = "triggerHover(true)" 
+					:class = "rand" 
+					:style = "{
 						'top': top,
 						'left': left
-					}">
+					}"
+					class = "kh_popover" >
 				
-					<span class="popover_header"></span>
+					<span class = "popover_header"></span>
 					<span 
-						 class='kh_popover_arrow' 
-						:class="Ppos" 
-						:style="{
+						:class = "Ppos" 
+						:style = "{
 							'left': left_arrow_pos,
 							'top': top_arrow_pos
-						}"></span>
-					<slot name="content">
+						}"
+						class = "kh_popover_arrow"></span>
+					<slot name = "content">
 
-						<div class="kh_popover_content">
-							<div class="kh_popover_infos">
-								<slot name="content_info">
-									<div class="kh_popover_avatar radius-all">
+						<div class = "kh_popover_content">
+							<div class = "kh_popover_infos">
+								<slot name = "content_info">
+									<div class = "kh_popover_avatar radius-all">
 
-										<span v-if=" user.photo == '' " 
-												class="img-circle team-small-avatar">{{ user.avatar }}</span>
+										<span v-if = "user.photo == ''" 
+												class = "img-circle team-small-avatar">{{ user.avatar }}</span>
 										
 										<img  v-else 
-												:src="$parent.getImage(user.photo)" 
-												class="team-small-avatar img-circle"/>
+												:src = "user.photo" 
+												class = "team-small-avatar img-circle"/>
 									</div>
-									<h4 class="kh_popover_name">{{ user.name }}</h4>
-									<h5 class="kh_popover_position">{{ user.position }}</h5>
+									<h4 class = "kh_popover_name">{{ user.name }}</h4>
+									<h5 class = "kh_popover_position">{{ user.position }}</h5>
 								</slot>
 							</div>
-							<slot name="content_actions">
+							<slot name = "content_actions">
 
-								<div v-if="user.type == 'user'"
-										class="kh_popover_actions" >
-									
-									<a  @click="emitActions('edit')" 
-										href="javascript:;">
-										
-										<i class="fa fa-edit"></i> edit
-									</a>
-									<a  @click="emitActions('activity')" 
-										href="javascript:;">
-										
-										<i class="fa fa-eye"></i> activity
-									</a>
-									<a  @click="emitActions('remove')" 
-										href="javascript:;">
-										
-										<i class="fa fa-ban"></i> remove
-									</a>
-								</div>
-								<div v-else class="kh_popover_actions">
+								<div class = "kh_popover_actions">
 
 									{{ user.email }}
 								</div>
@@ -93,15 +74,30 @@
 				</div>
 			</transition>
 		</div>
-		<b v-if="name" 
-			class="popover-name" 
-			@click="setClickPopoverPosition" 
-			@mouseover="setHoverPopoverPosition">
+		<b v-if = "name"  
+			@click = "setClickPopoverPosition" 
+			@mouseover = "setHoverPopoverPosition"
+			class = "popover-name">
 			{{ user.name }}
 		</b>
 	</div>
 </template>
 <script>
+
+	const ucfirst = (string) => {
+	    
+	    return string.charAt(0).toUpperCase() + string.slice(1);
+	}
+	const strRand = (str_length = 5) => {
+		var rand_str = "";
+		var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+		for (var i = 0; i < str_length; i++)
+			rand_str += chars.charAt(Math.floor(Math.random() * chars.length));
+
+		return rand_str;
+	}
+
 	export default {
 		name:'Popover',
 		props:{
@@ -130,7 +126,7 @@
 			}
 		},
 		data() {
-			var random = this.strRand();
+			var random = strRand();
 
 			return {
 				trigger_options:['hover','click'],
@@ -145,38 +141,32 @@
 				Pheight:196,
 				unite:'px',
 				calc_marg:10,
-				Ppos:'bottom'
+				available_positions:['top','bottom','auto'],
+				Ppos:'bottom',
+				Ptrigger:'hover'
 			}
 		},
 		methods:{
-			strRand(str_length = 5) {
-				var rand_str = "";
-				var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-				for (var i = 0; i < str_length; i++)
-					rand_str += chars.charAt(Math.floor(Math.random() * chars.length));
-
-				return rand_str;
-			},
 			setPopoverTopPosition (top, topOffset, cal_marg, _left) { 
 				
 				this.Ppos = 'top';
 				let cal_top = parseInt( top + topOffset - this.Pheight );
 				this.top = cal_top + this.unite;
 
-				this.left = ( cal_marg + ( cal_marg == 0 ? 10 : -10 ) ) + this.unite;
+				this.left = ( cal_marg + ( cal_marg == 0 ? this.calc_marg : -(this.calc_marg+(this.isMobile ? 2 : 0)) ) ) + this.unite;
 
 				this.left_arrow_pos =  parseInt( ( this.Pwidth/2 ) - this.calc_marg + _left ) + this.unite;
 
 				this.top_arrow_pos = ( cal_top + this.Pheight - 20 ) + this.unite;
 			},
 			setPopoverBottomPosition (top, topOffset, cal_marg, _left) { 
+				
 				let width = window.outerWidth;
-				let marg = 40;
+				
 				if (width - _left < this.Pwidth) {
-					cal_marg -= 10;
+					cal_marg -= (this.calc_marg+(this.isMobile ? 2 : 0));
 				} else if (_left < 0) {
-					cal_marg += 10;
+					cal_marg += this.calc_marg;
 				}
 
 				this.Ppos = 'bottom';
@@ -190,13 +180,10 @@
 				this.left = cal_marg + this.unite;
 			},
 			setPopoverPosition() {
-
-				const _doc_ = document;
-				const _win_ = window;
 				
-				let pos = _doc_.querySelector('.'+this.randUser).getBoundingClientRect();
-				let topOffset = _doc_.documentElement.scrollTop;
-				let width = _win_.outerWidth;
+				let pos = document.querySelector('.'+this.randUser).getBoundingClientRect();
+				let topOffset = document.documentElement.scrollTop;
+				let width = window.outerWidth;
 				
 				let cal_left = parseInt(pos.left-109);
 				let _left = cal_left;
@@ -213,44 +200,38 @@
 					
 					cal_marg = 0;
 				}
-				if (this.Ppos == 'auto') {
 
-					if (_win_.outerHeight-pos.top-this.Pheight < this.Pheight) {
+				if (this.Ppos != 'auto' && typeof this['setPopover'+ucfirst(this.Ppos)+'Position'] !== 'undefined') {
+					
+					this['setPopover'+ucfirst(this.Ppos)+'Position'](pos.top, topOffset, cal_marg, _left);
+				} else {
+
+					if (window.outerHeight-pos.top-this.Pheight < this.Pheight) {
 						
 						this.setPopoverTopPosition (pos.top, topOffset, cal_marg, _left);
 					} else {
 
 						this.setPopoverBottomPosition (pos.top, topOffset, cal_marg, _left);
 					}
-				} else if ( this.Ppos == 'top') {
-
-					this.setPopoverTopPosition (pos.top, topOffset, cal_marg, _left);
-				} else {
-
-					this.setPopoverBottomPosition (pos.top, topOffset, cal_marg, _left);
 				}
 			},
 			setClickPopoverPosition() {
 
-				if (this.trigger == 'click') {
+				if (this.Ptrigger == 'click') {
 					
 					this.setPopoverPosition();
 					this.togglePopover();
 				}
 			},
 			setHoverPopoverPosition() {
-				if (this.trigger == 'hover') {
+				if (this.Ptrigger == 'hover') {
 					
 					this.setPopoverPosition();
 				}
 			},
-			getImage(photo) {
-				
-				return photo;
-			},
 			triggerHover(status) {
 
-				if (this.trigger == 'hover') {
+				if (this.Ptrigger == 'hover') {
 
 					this.active = status;
 				}
@@ -277,22 +258,52 @@
 
 				this.$emit('action',{action,user});
 			},
-			classPopoverCore() {
-				let _class = typeof this.user.type !== 'undefined' ? this.user.type+' ' : '';
+			setClassPopoverContainer() {
 
 				if (this.icon) {
-					_class += 'kh-popover inline-team-item';
+					cls += 'kh-popover inline-team-item';
 				}
-				return _class;
+				return cls;
+			},
+			detectIfMobileOrTablet() {
+				var isMobile = false;
+			  	(function(a){
+			  		if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4))) isMobile = true;
+			  	})(navigator.userAgent||navigator.vendor||window.opera);
+				return isMobile;
+			},
+			initPopTrigger() {
+
+				if (this.trigger_options.indexOf(this.trigger) != -1) {
+
+					this.Ptrigger = this.trigger;
+				}
+			},
+			initPopPosition() {
+
+				if (this.available_positions.indexOf(this.position) != -1) {
+
+					this.Ppos = this.position;
+				}
+			},
+			initPopIsMobile() {
+
+				this.isMobile = this.detectIfMobileOrTablet();
+				if (this.isMobile) {
+
+					this.Ptrigger = 'click';
+				}
 			},
 			initKhPopover() {
-				const _doc_ = document;
-				var userPopover = _doc_.querySelector('.'+this.rand);
 
-				_doc_.querySelector('.'+this.rand).outerHtml = '';
-				_doc_.querySelector('body').appendChild(userPopover);
+				var userPopover = document.querySelector('.'+this.rand);
 
-				this.Ppos = this.position;
+				userPopover.outerHtml = '';
+				document.querySelector('body').appendChild(userPopover);
+				
+				this.initPopTrigger();
+				this.initPopPosition();
+				this.initPopIsMobile();
 			}
 		},	
 		mounted() {

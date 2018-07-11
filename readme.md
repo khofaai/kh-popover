@@ -3,16 +3,16 @@
 <p align="center">
 	<h1>Kh-Popover</h1>
   	<a href="https://www.npmjs.com/package/kh-popover" target="_blank"><img src="https://img.shields.io/badge/kh--popover-dev(beta)-orange.svg" alt="Build Status"></a>
-  	<a href="https://www.npmjs.com/package/kh-popover" target="_blank"><img src="https://img.shields.io/badge/npm-v0.3.1-orange.svg" alt="Coverage Status"></a>
+  	<a href="https://www.npmjs.com/package/kh-popover" target="_blank"><img src="https://img.shields.io/badge/npm-v0.3.2-orange.svg" alt="Coverage Status"></a>
   	<a href="https://www.npmjs.com/package/kh-popover" target="_blank"><img src="https://img.shields.io/badge/licence-mit-green.svg" alt="Coverage Status"></a>
   	<br>
 </p>
 
 popover build for vuejs framework. 
 
-**kh-popover** package links :
-	- <a href="https://www.npmjs.com/package/kh-popover" target="_blank">npm</a>
-	- <a href="https://yarnpkg.com/en/package/kh-popover" target="_blank">yarn</a>
+**kh-popover** package links : <br>
+- <a href="https://www.npmjs.com/package/kh-popover" target="_blank">npm</a>
+- <a href="https://yarnpkg.com/en/package/kh-popover" target="_blank">yarn</a>
 
 ## Getting Started
 
@@ -50,10 +50,6 @@ export default {
 - **_trigger_** : String. accept two options ['hover','click'] `// default : 'hover' > popover displayed on hover event`
 - **_name_** : Boolean. to display given user's name `// default : false it will show avatar not user name`
 - **_icon_** : Boolean. to display avatar `// defaukt : true`
-
-## Actions
-
-- **_action_** : ..
 
 ## Slots
 
