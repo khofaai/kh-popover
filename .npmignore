@@ -1,1 +1,3 @@
 src
+dist/*.umd.*
+dist/demo.html
