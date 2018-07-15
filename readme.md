@@ -1,22 +1,21 @@
-## README
+## Kh-Popover
 
-<p align="center">
-	<h1>Kh-Popover</h1>
-  	<a href="https://www.npmjs.com/package/kh-popover" target="_blank"><img src="https://img.shields.io/badge/kh--popover-dev(beta)-orange.svg" alt="Build Status"></a>
-  	<a href="https://www.npmjs.com/package/kh-popover" target="_blank"><img src="https://img.shields.io/badge/npm-v0.3.4-orange.svg" alt="Coverage Status"></a>
-  	<a href="https://www.npmjs.com/package/kh-popover" target="_blank"><img src="https://img.shields.io/badge/licence-mit-green.svg" alt="Coverage Status"></a>
-  	<br>
-</p>
+[![npm](https://img.shields.io/npm/v/kh-popover.svg)](https://www.npmjs.com/package/kh-popover) ![license](https://img.shields.io/github/license/khofaai/kh-popover.svg) [![npm](https://img.shields.io/npm/dw/kh-popover.svg)](https://www.npmjs.com/package/kh-popover) [![npm](https://img.shields.io/npm/dt/kh-popover.svg)](https://www.npmjs.com/package/kh-popover) 
 
-popover build for vuejs framework. 
+## Description
 
-**kh-popover** package links : <br>
-- <a href="https://www.npmjs.com/package/kh-popover" target="_blank">npm</a>
-- <a href="https://yarnpkg.com/en/package/kh-popover" target="_blank">yarn</a>
+Popover build for vuejs framework.
+This packages still in dev mode ( after all this is my first package x) )
 
 ## Getting Started
 
-this packages still in dev mode ( after all this is my first package x) )
+This package help you create Popover/Tooltip with a pre-squelette and give you the possibility to set yours and dynamic positions.
+
+You can view this package on both **npm** and **yarn**
+
+**kh-popover** Package links : <br>
+- <a href="https://www.npmjs.com/package/kh-popover" target="_blank">npm</a>
+- <a href="https://yarnpkg.com/en/package/kh-popover" target="_blank">yarn</a>
 
 ## Installing
 
@@ -36,12 +35,12 @@ yarn add kh-popover
 
 ```javascript
 
-import Popover from 'kh-popover';
 require('kh-popover/dist/kh-popover.css');
+import khPopover from 'kh-popover';
 
 export default {
 	components:{
-		'kh-popover':KhPopover
+		'kh-popover':khPopover
 	}
 }
 ```
