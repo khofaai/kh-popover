@@ -1,7 +1,7 @@
 {
   "name": "kh-popover",
   "main": "dist/kh-popover.common.js",
-  "version": "0.3.4",
+  "version": "0.4.0",
   "description": "A Vue.js component for Popover/Tooltip",
   "author": "Anas El ALAMI",
   "license": "MIT",

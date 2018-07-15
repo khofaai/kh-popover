@@ -59,3 +59,8 @@ export default {
 - **_content_** : where popover core is located ( include both [ content_info, content_actions ])
 - **_content_info_** : where popover header is located
 - **_content_actions_** : where popover footer is located
+
+## Next
+
+- **Demo** : We will publish a demo asap
+- **Testing** : We will add Unit Test
