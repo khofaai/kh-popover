@@ -1,13 +1,12 @@
+filter:
+    excluded_paths:
+        - '*.min.js'
+        - 'dist/*'
 checks:
     javascript: true
-
 build:
     nodes:
         analysis:
             tests:
                 override:
                     - js-scrutinizer-run
-
-filter:
-    excluded_paths:
-        - .github/*
