@@ -1,14 +1,5 @@
-(function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory();
-	else if(typeof define === 'function' && define.amd)
-		define([], factory);
-	else if(typeof exports === 'object')
-		exports["kh-popover"] = factory();
-	else
-		root["kh-popover"] = factory();
-})(typeof self !== 'undefined' ? self : this, function() {
-return /******/ (function(modules) { // webpackBootstrap
+module.exports =
+/******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -105,18 +96,18 @@ __webpack_require__.r(__webpack_exports__);
 // EXTERNAL MODULE: ./node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js
 var setPublicPath = __webpack_require__("HrLf");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"/var/www/html/anas/js-projects/popover/node_modules/.cache/vue-loader","cacheIdentifier":"02bea4b2-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Popover.vue?vue&type=template&id=2c2ecfac
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"popover-wrapper",class:_vm.randUser,on:{"mouseleave":function($event){_vm.triggerHover(false)},"mouseover":function($event){_vm.triggerHover(true)}}},[_c('div',{class:_vm.setClassPopoverContainer()},[(_vm.icon)?_c('div',{staticClass:"avatar-slot",on:{"click":_vm.setClickPopoverPosition,"mouseover":_vm.setHoverPopoverPosition}},[_vm._t("avatar",[_c('a',{attrs:{"href":"javascript:;"}},[(_vm.user.photo == '')?_c('span',{staticClass:"inline-team-avatar radius-all"},[_vm._v("\n\t\t\t\t\t\t"+_vm._s(_vm.user.avatar)+"\n\t\t\t\t\t")]):_c('img',{staticClass:"inline-team-avatar radius-all",attrs:{"src":_vm.user.photo}})])])],2):_vm._e(),_c('transition',{attrs:{"name":"fade-fast"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.active),expression:"active"}],staticClass:"kh_popover",class:_vm.rand,style:({
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"/var/www/html/anas/js-projects/popover/node_modules/.cache/vue-loader","cacheIdentifier":"02bea4b2-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Popover.vue?vue&type=template&id=e57a2932
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"popover-wrapper",class:_vm.randUser,on:{"mouseleave":function($event){_vm.triggerHover(false)},"mouseover":function($event){_vm.triggerHover(true)}}},[_c('div',{class:_vm.setClassPopoverContainer()},[(_vm.icon)?_c('div',{staticClass:"avatar-slot",on:{"click":_vm.setClickPopoverPosition,"mouseover":_vm.setHoverPopoverPosition}},[_vm._t("avatar",[_c('a',{attrs:{"href":"javascript:;"}},[(_vm.user.photo == '')?_c('span',{staticClass:"inline-team-avatar radius-all"},[_vm._v("\n\t\t\t\t\t\t"+_vm._s(_vm.user.avatar)+"\n\t\t\t\t\t")]):_c('img',{staticClass:"inline-team-avatar radius-all",attrs:{"src":_vm.user.photo}})])])],2):_vm._e(),_c('transition',{attrs:{"name":"fade-fast"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.active),expression:"active"}],staticClass:"vuej-popover",class:_vm.rand,style:({
 					'top': _vm.top,
 					'left': _vm.left
-				}),on:{"mouseleave":function($event){_vm.triggerHover(false)},"mouseover":function($event){_vm.triggerHover(true)}}},[_c('span',{staticClass:"popover_header"}),_c('span',{staticClass:"kh_popover_arrow",class:_vm.Ppos,style:({
+				}),on:{"mouseleave":function($event){_vm.triggerHover(false)},"mouseover":function($event){_vm.triggerHover(true)}}},[_c('span',{staticClass:"popover-header"}),_c('span',{staticClass:"vuej-popover-arrow",class:_vm.Ppos,style:({
 						'left': _vm.left_arrow_pos,
 						'top': _vm.top_arrow_pos
-					})}),_vm._t("content",[_c('div',{staticClass:"kh_popover_content"},[_c('div',{staticClass:"kh_popover_infos"},[_vm._t("content_info",[_c('div',{staticClass:"kh_popover_avatar radius-all"},[(_vm.user.photo == '')?_c('span',{staticClass:"img-circle team-small-avatar"},[_vm._v(_vm._s(_vm.user.avatar))]):_c('img',{staticClass:"team-small-avatar img-circle",attrs:{"src":_vm.user.photo}})]),_c('h4',{staticClass:"kh_popover_name"},[_vm._v(_vm._s(_vm.user.name))]),_c('h5',{staticClass:"kh_popover_position"},[_vm._v(_vm._s(_vm.user.position))])])],2),_vm._t("content_actions",[_c('div',{staticClass:"kh_popover_actions"},[_vm._v("\n\n\t\t\t\t\t\t\t\t"+_vm._s(_vm.user.email)+"\n\t\t\t\t\t\t\t")])])],2)])],2)])],1),(_vm.name)?_c('b',{staticClass:"popover-name",on:{"click":_vm.setClickPopoverPosition,"mouseover":_vm.setHoverPopoverPosition}},[_vm._v("\n\t\t"+_vm._s(_vm.user.name)+"\n\t")]):_vm._e()])}
+					})}),_vm._t("content",[_c('div',{staticClass:"vuej-popover-content"},[_c('div',{staticClass:"vuej-popover-infos"},[_vm._t("content_info",[_c('div',{staticClass:"vuej-popover-avatar radius-all"},[(_vm.user.photo == '')?_c('span',{staticClass:"img-circle team-small-avatar"},[_vm._v(_vm._s(_vm.user.avatar))]):_c('img',{staticClass:"team-small-avatar img-circle",attrs:{"src":_vm.user.photo}})]),_c('h4',{staticClass:"vuej-popover-name"},[_vm._v(_vm._s(_vm.user.name))]),_c('h5',{staticClass:"vuej-popover-position"},[_vm._v(_vm._s(_vm.user.position))])])],2),_vm._t("content_actions",[_c('div',{staticClass:"vuej-popover-actions"},[_vm._v("\n\n\t\t\t\t\t\t\t\t"+_vm._s(_vm.user.email)+"\n\t\t\t\t\t\t\t")])])],2)])],2)])],1),(_vm.name)?_c('b',{staticClass:"popover-name",on:{"click":_vm.setClickPopoverPosition,"mouseover":_vm.setHoverPopoverPosition}},[_vm._v("\n\t\t"+_vm._s(_vm.user.name)+"\n\t")]):_vm._e()])}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Popover.vue?vue&type=template&id=2c2ecfac
+// CONCATENATED MODULE: ./src/components/Popover.vue?vue&type=template&id=e57a2932
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Popover.vue?vue&type=script&lang=js
 //
@@ -244,6 +235,9 @@ var strRand = function strRand() {
     },
     position: {
       default: 'auto'
+    },
+    containter: {
+      dafault: null
     }
   },
   data: function data() {
@@ -252,7 +246,7 @@ var strRand = function strRand() {
       trigger_options: ['hover', 'click'],
       active: false,
       rand: 'popover_' + random,
-      randUser: 'kh_popover_' + random,
+      randUser: 'vuej-popover_' + random,
       top: -500,
       left: -500,
       left_arrow_pos: '',
@@ -359,7 +353,7 @@ var strRand = function strRand() {
     },
     setClassPopoverContainer: function setClassPopoverContainer() {
       var cls = '';
-      if (this.icon) cls += 'kh-popover inline-team-item';
+      if (this.icon) cls += 'inline-team-item';
       return cls;
     },
     detectIfMobileOrTablet: function detectIfMobileOrTablet() {
@@ -387,6 +381,11 @@ var strRand = function strRand() {
       if (this.isMobile) {
         this.Ptrigger = 'click';
       }
+    },
+    initPopContainter: function initPopContainter() {
+      if (this.container !== null) {// here container logic
+      } else {// here no container assigned logic
+        }
     },
     initKhPopover: function initKhPopover() {
       var userPopover = document.querySelector('.' + this.rand);
@@ -565,5 +564,4 @@ if (typeof window !== 'undefined') {
 /***/ })
 
 /******/ })["default"];
-});
-//# sourceMappingURL=kh-popover.umd.js.map
+//# sourceMappingURL=vuejs-popover.common.js.map

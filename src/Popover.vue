@@ -34,7 +34,7 @@
 						'top': top,
 						'left': left
 					}"
-					class = "kh-popover" >
+					class = "vuej-popover" >
 				
 					<span class = "popover-header"></span>
 					<span 
@@ -43,13 +43,13 @@
 							'left': left_arrow_pos,
 							'top': top_arrow_pos
 						}"
-						class = "kh-popover-arrow"></span>
+						class = "vuej-popover-arrow"></span>
 					<slot name = "content">
 
-						<div class = "kh-popover-content">
-							<div class = "kh-popover-infos">
+						<div class = "vuej-popover-content">
+							<div class = "vuej-popover-infos">
 								<slot name = "content_info">
-									<div class = "kh-popover-avatar radius-all">
+									<div class = "vuej-popover-avatar radius-all">
 
 										<span v-if = "user.photo == ''" 
 												class = "img-circle team-small-avatar">{{ user.avatar }}</span>
@@ -58,13 +58,13 @@
 												:src = "user.photo" 
 												class = "team-small-avatar img-circle"/>
 									</div>
-									<h4 class = "kh-popover-name">{{ user.name }}</h4>
-									<h5 class = "kh-popover-position">{{ user.position }}</h5>
+									<h4 class = "vuej-popover-name">{{ user.name }}</h4>
+									<h5 class = "vuej-popover-position">{{ user.position }}</h5>
 								</slot>
 							</div>
 							<slot name = "content_actions">
 
-								<div class = "kh-popover-actions">
+								<div class = "vuej-popover-actions">
 
 									{{ user.email }}
 								</div>
@@ -123,6 +123,9 @@
 			},
 			position:{
 				default:'auto'
+			},
+			containter:{
+				dafault:null
 			}
 		},
 		data() {
@@ -132,7 +135,7 @@
 				trigger_options:['hover','click'],
 				active:false,
 				rand :'popover_'+random,
-				randUser :'kh-popover_'+random,
+				randUser :'vuej-popover_'+random,
 				top:-500,
 				left:-500,
 				left_arrow_pos:'',
@@ -261,7 +264,7 @@
 			setClassPopoverContainer() {
 				let cls = '';
 				
-				if (this.icon) cls += 'kh-popover inline-team-item';
+				if (this.icon) cls += 'inline-team-item';
 				
 				return cls;
 			},
@@ -294,8 +297,15 @@
 					this.Ptrigger = 'click';
 				}
 			},
+			initPopContainter() {
+
+				if (this.container !== null) {
+					// here container logic
+				} else {
+					// here no container assigned logic
+				}
+			},
 			initKhPopover() {
-				console.log(this.rand)
 				var userPopover = document.querySelector('.'+this.rand);
 
 				userPopover.outerHtml = '';
@@ -316,20 +326,20 @@
 	.popover-name {padding: 5px 0;}
 	.popover-wrapper {display: inline-block;margin-right: 2px;}
 	.popover-header {position: absolute;background: transparent;padding: 10px 124px;left: 0;top: -20px;}
-	.kh-popover {position: absolute;z-index: 999;width: 242px;left:-108px;box-shadow: 0px 0px 3px 0px rgba(51,51,51,.5);}
-	.kh-popover-arrow {width: 0; height: 0; border-left: 10px solid transparent;border-right: 10px solid transparent;}
-	.kh-popover-arrow.bottom {border-bottom: 10px solid #333;left: 46%;top: -10px;position: absolute;z-index: 1;}
-	.kh-popover-arrow.top {border-top: 10px solid #333;position: fixed;bottom: 15px;top:auto;}
-	.kh-popover-avatar {width: 40px;height: 40px;display: block;position: relative;border: 0;box-sizing: initial;background-color: #999;color: #fff;cursor: pointer;margin: 0 auto 10px;}
-	.kh-popover-avatar img {height: 100%;width: 100%;display: inline-block;}
-	.kh-popover-avatar .team-small-avatar {display: block;text-align: center;font-size: 15px;font-weight: 700;line-height: 41px;text-transform: uppercase;}
-	.kh-popover-actions {position: relative;padding: 10px 15px;word-break: break-all;background: #fff;}
-	.kh-popover-actions a {text-transform: capitalize;font-size: 13px;}
-	.kh-popover-actions a i {vertical-align: -1px;font-size: 90%;margin-right: 1px;}
-	.kh-popover-infos {background: #f9f9f9;padding: 15px 15px;}
-	.kh-popover-name {color: #222;text-transform: capitalize;font-family: "FaktProBold";font-size: 17px;margin-bottom: 5px;}
-	.kh-popover-position {display: block;text-transform: capitalize;font-family: "FaktProMedium";font-size: 14px;color: #949ba2;margin-bottom: 5px;}
-	.kh-popover-content {text-align: center;-webkit-border-radius: 4px;-ms-border-radius: 4px;border-radius: 4px;overflow: hidden;position: relative;}
+	.vuej-popover {position: absolute;z-index: 999;width: 242px;left:-108px;box-shadow: 0px 0px 3px 0px rgba(51,51,51,.5);}
+	.vuej-popover-arrow {width: 0; height: 0; border-left: 10px solid transparent;border-right: 10px solid transparent;}
+	.vuej-popover-arrow.bottom {border-bottom: 10px solid #333;left: 46%;top: -10px;position: absolute;z-index: 1;}
+	.vuej-popover-arrow.top {border-top: 10px solid #333;position: fixed;bottom: 15px;top:auto;}
+	.vuej-popover-avatar {width: 40px;height: 40px;display: block;position: relative;border: 0;box-sizing: initial;background-color: #999;color: #fff;cursor: pointer;margin: 0 auto 10px;}
+	.vuej-popover-avatar img {height: 100%;width: 100%;display: inline-block;}
+	.vuej-popover-avatar .team-small-avatar {display: block;text-align: center;font-size: 15px;font-weight: 700;line-height: 41px;text-transform: uppercase;}
+	.vuej-popover-actions {position: relative;padding: 10px 15px;word-break: break-all;background: #fff;}
+	.vuej-popover-actions a {text-transform: capitalize;font-size: 13px;}
+	.vuej-popover-actions a i {vertical-align: -1px;font-size: 90%;margin-right: 1px;}
+	.vuej-popover-infos {background: #f9f9f9;padding: 15px 15px;}
+	.vuej-popover-name {color: #222;text-transform: capitalize;font-family: "FaktProBold";font-size: 17px;margin-bottom: 5px;}
+	.vuej-popover-position {display: block;text-transform: capitalize;font-family: "FaktProMedium";font-size: 14px;color: #949ba2;margin-bottom: 5px;}
+	.vuej-popover-content {text-align: center;-webkit-border-radius: 4px;-ms-border-radius: 4px;border-radius: 4px;overflow: hidden;position: relative;}
 	.fade-fast-enter-active {transition-delay: .2s;}
 	.fade-fast-enter, .fade-fast-leave-active {opacity: 0}
 	.fade-fast-enter-active, .fade-fast-leave-active {transition-property: opacity;transition-duration: .3s;}

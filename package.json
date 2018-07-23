@@ -1,13 +1,13 @@
 {
-  "name": "kh-popover",
-  "main": "dist/kh-popover.common.js",
-  "version": "0.4.0",
+  "name": "vuejs-popover",
+  "main": "dist/vuejs-popover.common.js",
+  "version": "0.5.0",
   "description": "A Vue.js component for Popover/Tooltip",
   "author": "Anas El ALAMI",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/khofaai/kh-popover"
+    "url": "https://github.com/khofaai/vuejs-popover"
   },
   "keywords": [
     "vuejs",
@@ -17,7 +17,7 @@
     "vuejs-popover",
     "vuejs-tooltip",
     "vuejs-component",
-    "kh-popover"
+    "vuejs-popover"
   ],
   "files": [
     "dist/*"
