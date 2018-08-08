@@ -161,6 +161,7 @@
         this.left_arrow_pos =  parseInt( ( this.Pwidth/2 ) - this.calc_marg + _left ) + this.unite;
         this.top_arrow_pos = ( cal_top + this.Pheight - 20 ) + this.unite;
       },
+      
       setPopoverBottomPosition (top, topOffset, cal_marg, _left) { 
         
         let width = window.outerWidth;
@@ -179,6 +180,7 @@
         this.left_arrow_pos = parseInt( ( this.Pwidth/2 ) - this.calc_marg + _left - cal_marg ) + this.unite;
         this.top_arrow_pos = '-' + this.calc_marg + this.unite;
       },
+      
       setPopoverPosition() {
         
         let pos = document.querySelector('.'+this.randUser).getBoundingClientRect();
@@ -215,6 +217,7 @@
           }
         }
       },
+      
       setClickPopoverPosition() {
 
         if (this.Ptrigger == 'click') {
@@ -223,12 +226,14 @@
           this.togglePopover();
         }
       },
+      
       setHoverPopoverPosition() {
         if (this.Ptrigger == 'hover') {
           
           this.setPopoverPosition();
         }
       },
+      
       triggerHover(status) {
 
         if (this.Ptrigger == 'hover') {
@@ -236,6 +241,7 @@
           this.active = status;
         }
       },
+      
       togglePopover() {
 
         if (this.active) {
@@ -244,23 +250,28 @@
         }
         return this.showPopover();
       },
+      
       showPopover() {
         
         this.active = true;
         setTimeout(() => document.getElementById('app').addEventListener('click',this.hidePopover), 0);
       },
+      
       hidePopover() {
         
         this.active = false;
         document.getElementById('app').removeEventListener('click',this.hidePopover);
       },
+      
       emitActions(action) {
 
         this.$emit('action',{action,user});
       },
+      
       setClassPopoverContainer() {
         return this.icon ? 'inline-team-item' : ''
       },
+      
       detectIfMobileOrTablet() {
         var isMobile = false;
           (function(a){
@@ -268,6 +279,7 @@
           })(navigator.userAgent||navigator.vendor||window.opera);
         return isMobile;
       },
+      
       initPopTrigger() {
 
         if (this.trigger_options.indexOf(this.trigger) != -1) {
@@ -275,6 +287,7 @@
           this.Ptrigger = this.trigger;
         }
       },
+      
       initPopPosition() {
 
         if (this.available_positions.indexOf(this.position) != -1) {
@@ -282,6 +295,7 @@
           this.Ppos = this.position;
         }
       },
+      
       initPopIsMobile() {
 
         this.isMobile = this.detectIfMobileOrTablet();
@@ -290,6 +304,7 @@
           this.Ptrigger = 'click';
         }
       },
+      
       initKhPopover() {
         
         this.putPopoverToBody();
@@ -297,6 +312,7 @@
         this.initPopPosition();
         this.initPopIsMobile();
       },
+      
       putPopoverToBody() {
         var userPopover = document.querySelector('.'+this.rand);
         userPopover.outerHtml = '';
