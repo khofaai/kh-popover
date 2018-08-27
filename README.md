@@ -1,15 +1,14 @@
 # Kh-Popover
 
-[![npm](https://img.shields.io/npm/v/kh-popover.svg)](https://www.npmjs.com/package/kh-popover) ![license](https://img.shields.io/github/license/khofaai/kh-popover.svg) [![npm](https://img.shields.io/npm/dw/kh-popover.svg)](https://www.npmjs.com/package/kh-popover) [![npm](https://img.shields.io/npm/dt/kh-popover.svg)](https://www.npmjs.com/package/kh-popover) 
+[![npm](https://img.shields.io/npm/v/kh-popover.svg)](https://www.npmjs.com/package/kh-popover) ![license](https://img.shields.io/github/license/khofaai/kh-popover.svg) [![npm](https://img.shields.io/npm/dw/kh-popover.svg)](https://www.npmjs.com/package/kh-popover) [![npm](https://img.shields.io/npm/dt/kh-popover.svg)](https://www.npmjs.com/package/kh-popover) [![Build Status](https://travis-ci.org/khofaai/kh-popover.svg?branch=master)](https://travis-ci.org/khofaai/kh-popover)
 
 ### Description
 
 Popover build for vuejs framework.<br>
-This packages still in dev mode. This Popover specialy made for user/account display information
+This packages still in dev mode.
+This package help you create Popover/Tooltip with a pre-squelette and give you the possibility to set yours and dynamic positions.
 
 ### Getting Started
-
-This package help you create Popover/Tooltip with a pre-squelette and give you the possibility to set yours and dynamic positions.
 
 You can view this package on both **npm** and **yarn**
 
@@ -19,28 +18,20 @@ You can view this package on both **npm** and **yarn**
 
 ### Installing
 
-npm installation : 
-
 ```
 npm i kh-popover
 ```
-
-yarn installation : 
-
+if you use `yarn` :
 ```
 yarn add kh-popover
 ```
 
 ### Usage
-
-![alt text](./src/assets/popover.png)
-
 ```html
 <template>
 	<kh-popover />
 </template>
 ```
-
 ```javascript
 
 require('kh-popover/dist/kh-popover.css');
@@ -52,6 +43,8 @@ export default {
 	}
 }
 ```
+display : <br>
+![alt text](./src/assets/popover.png)
 
 ### Attributes
 
