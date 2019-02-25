@@ -1,227 +1,181 @@
 <template>
   <div 
-    @mouseleave = "triggerHover(false)" 
-    @mouseover = "triggerHover(true)"
-    :class = "randUser" 
-    class = "popover-wrapper" > 
-    <div :class = "setClassPopoverContainer()">
-      
+    @mouseleave="triggerHover(false)" 
+    @mouseover="triggerHover(true)"
+    :class="randUser" 
+    class="popover-wrapper" > 
+    <div :class="setClassPopoverContainer()">
       <div 
-        v-if = "icon"
-        @click = "setClickPopoverPosition" 
-        @mouseover = "setHoverPopoverPosition"
-        class = "avatar-slot" >
-        <slot name = "avatar">
-          
-          <a href = "javascript:;">
-            <span v-if = "user.photo == ''" 
-                class = "inline-team-avatar radius-all" >
-              {{ user.avatar }}
-            </span>
-            <img  v-else
-                :src = "user.photo" 
-                class = "inline-team-avatar radius-all" />
+        v-if="icon"
+        @click="setClickPopoverPosition" 
+        @mouseover="setHoverPopoverPosition"
+        class="avatar-slot" >
+        <slot name="avatar">
+          <a href="javascript:;">
+            <span v-if="user.photo == ''" class="inline-team-avatar radius-all" >{{ user.avatar }}</span>
+            <img  v-else :src="user.photo" class="inline-team-avatar radius-all" />
           </a>
         </slot>
       </div>
       <transition name = "fade-fast">
         <div 
-          v-show = "active" 
-          @mouseleave = "triggerHover(false)" 
-          @mouseover = "triggerHover(true)" 
-          :class = "rand" 
-          :style = "{
-            'top': top,
-            'left': left
-          }"
-          class = "kh-popover" >
-        
-          <span class = "popover-header"></span>
-          <span 
-            :class = "Ppos" 
-            :style = "{
-              'left': left_arrow_pos,
-              'top': top_arrow_pos
-            }"
-            class = "kh-popover-arrow"></span>
-          <slot name = "content">
-
-            <div class = "kh-popover-content">
-              <div class = "kh-popover-infos">
-                <slot name = "content_info">
-                  <div class = "kh-popover-avatar radius-all">
-
-                    <span v-if = "user.photo == ''" 
-                        class = "img-circle team-small-avatar">{{ user.avatar }}</span>
-                    
-                    <img  v-else 
-                        :src = "user.photo" 
-                        class = "team-small-avatar img-circle"/>
+          v-show="active" 
+          @mouseleave="triggerHover(false)" 
+          @mouseover="triggerHover(true)" 
+          :class="rand" 
+          :style="{ 'top': top,'left': left }"
+          class="kh-popover" >
+          <span class="popover-header"></span>
+          <span :class="Ppos" :style="{ 'left': leftArrowPos,'top': topArrowPos }" class="kh-popover-arrow"></span>
+          <slot name="content">
+            <div class="kh-popover-content">
+              <div class="kh-popover-infos">
+                <slot name="content_info">
+                  <div class="kh-popover-avatar radius-all">
+                    <span v-if="user.photo == ''" class="img-circle team-small-avatar">{{ user.avatar }}</span>
+                    <img v-else :src="user.photo" class="team-small-avatar img-circle"/>
                   </div>
-                  <h4 class = "kh-popover-name">{{ user.name }}</h4>
-                  <h5 class = "kh-popover-position">{{ user.position }}</h5>
+                  <h4 class="kh-popover-name">{{ user.name }}</h4>
+                  <h5 class="kh-popover-position">{{ user.position }}</h5>
                 </slot>
               </div>
-              <slot name = "content_actions">
-
-                <div class = "kh-popover-actions">
-
-                  {{ user.email }}
-                </div>
-              </slot>
+              <slot name="content_actions"><div class="kh-popover-actions">{{ user.email }}</div></slot>
             </div>
           </slot>
         </div>
       </transition>
     </div>
-    <b v-if = "name"  
-      @click = "setClickPopoverPosition" 
-      @mouseover = "setHoverPopoverPosition"
-      class = "popover-name">
+    <b v-if="name" @click="setClickPopoverPosition" @mouseover="setHoverPopoverPosition" class="popover-name">
       {{ user.name }}
     </b>
   </div>
 </template>
 <script>
-
-  const ucfirst = (string) => {
-      
-      return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-  const strRand = (str_length = 5) => {
+  let ucfirst = (string) => string.charAt(0).toUpperCase() + string.slice(1);
+  let strRand = (str_length = 5) => {
     var rand_str = "";
     var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-    for (var i = 0; i < str_length; i++)
+    for (var i = 0; i < str_length; i++) {
       rand_str += chars.charAt(Math.floor(Math.random() * chars.length));
-
+    }
     return rand_str;
   }
 
   export default {
     name:'Popover',
-    props:{
-      user:{
-        default:() => {
+    props: {
+      user: {
+        default: () => {
           return {
-            photo:'',
-            name:'header name',
-            avatar:'UN',
-            email:'action@name.kh'
+            name: 'header name',
+            email: 'action@example.com',
+            photo: '',
+            avatar: 'UN',
           }
         }
       },
-      trigger:{
-        default:'hover'
+      trigger: {
+        default: 'hover'
       },
-      name:{
-        default:false
+      name: {
+        default: false
       },
-      icon:{
-        default:true
+      icon: {
+        default: true
       },
-      position:{
-        default:'auto'
+      position: {
+        default: 'auto'
       },
-      containter:{
-        dafault:null
+      containter: {
+        default: null
       }
     },
     data() {
       var random = strRand();
 
       return {
-        trigger_options:['hover','click'],
+        triggerOptions:['hover','click'],
         active:false,
         rand :'popover_'+random,
         randUser :'kh-popover_'+random,
         top:-500,
         left:-500,
-        left_arrow_pos:'',
-        top_arrow_pos:'',
+        leftArrowPos:'',
+        topArrowPos:'',
         Pwidth:242,
         Pheight:196,
         unite:'px',
-        calc_marg:10,
-        available_positions:['top','bottom','auto'],
+        calculateMargin:10,
+        availablePositions:['top','bottom','auto'],
         Ppos:'bottom',
         Ptrigger:'hover'
       }
     },
-    methods:{
-      setPopoverTopPosition (top, topOffset, cal_marg, _left) { 
-        
+    methods: {
+
+      setPopoverTopPosition (top, topOffset, calculatedMargin, _left) { 
         let cal_top = parseInt( top + topOffset - this.Pheight );
 
         this.Ppos = 'top';
         
         this.top = cal_top + this.unite;
-        this.left = ( cal_marg + ( cal_marg == 0 ? this.calc_marg : -(this.calc_marg+(this.isMobile ? 2 : 0)) ) ) + this.unite;
+        this.left = ( calculatedMargin + ( calculatedMargin == 0 ? this.calculateMargin : -(this.calculateMargin+(this.isMobile ? 2 : 0)) ) ) + this.unite;
         
-        this.left_arrow_pos =  parseInt( ( this.Pwidth/2 ) - this.calc_marg + _left ) + this.unite;
-        this.top_arrow_pos = ( cal_top + this.Pheight - 20 ) + this.unite;
+        this.leftArrowPos =  parseInt( ( this.Pwidth/2 ) - this.calculateMargin + _left ) + this.unite;
+        this.topArrowPos = ( cal_top + this.Pheight - 20 ) + this.unite;
       },
       
-      setPopoverBottomPosition (top, topOffset, cal_marg, _left) { 
+      setPopoverBottomPosition (top, topOffset, calculatedMargin, _left) { 
         
         let width = window.outerWidth;
         
         if (width - _left < this.Pwidth) {
-          cal_marg -= (this.calc_marg+(this.isMobile ? 2 : 0));
+          calculatedMargin -= (this.calculateMargin+(this.isMobile ? 2 : 0));
         } else if (_left < 0) {
-          cal_marg += this.calc_marg;
+          calculatedMargin += this.calculateMargin;
         }
 
         this.Ppos = 'bottom';
 
         this.top = parseInt( top + 40 + topOffset ) + this.unite;
-        this.left = cal_marg + this.unite;
+        this.left = calculatedMargin + this.unite;
 
-        this.left_arrow_pos = parseInt( ( this.Pwidth/2 ) - this.calc_marg + _left - cal_marg ) + this.unite;
-        this.top_arrow_pos = '-' + this.calc_marg + this.unite;
+        this.leftArrowPos = parseInt( ( this.Pwidth/2 ) - this.calculateMargin + _left - calculatedMargin ) + this.unite;
+        this.topArrowPos = '-' + this.calculateMargin + this.unite;
       },
       
       setPopoverPosition() {
-        
         let pos = document.querySelector('.'+this.randUser).getBoundingClientRect();
         let topOffset = document.documentElement.scrollTop;
         let width = window.outerWidth;
         
-        let cal_left = parseInt(pos.left-109);
-        let _left = cal_left;
+        let calculatedLeftPosition = parseInt(pos.left-109);
+        let _left = calculatedLeftPosition;
 
         let cal_right = parseInt(pos.right-109);
         let _right = cal_right;
 
-        let cal_marg = cal_left;
+        let calculatedMargin = calculatedLeftPosition;
 
-        if (cal_left + this.Pwidth > width ) {
-          
-          cal_marg = width - this.Pwidth;
+        if (calculatedLeftPosition + this.Pwidth > width ) {
+          calculatedMargin = width - this.Pwidth;
         } else if(cal_right < 0) {
-          
-          cal_marg = 0;
+          calculatedMargin = 0;
         }
 
         if (this.Ppos != 'auto' && typeof this['setPopover'+ucfirst(this.Ppos)+'Position'] !== 'undefined') {
-          
-          this['setPopover'+ucfirst(this.Ppos)+'Position'](pos.top, topOffset, cal_marg, _left);
+          this['setPopover'+ucfirst(this.Ppos)+'Position'](pos.top, topOffset, calculatedMargin, _left);
         } else {
-
           if (window.outerHeight-pos.top-this.Pheight < this.Pheight) {
-            
-            this.setPopoverTopPosition (pos.top, topOffset, cal_marg, _left);
+            this.setPopoverTopPosition (pos.top, topOffset, calculatedMargin, _left);
           } else {
-
-            this.setPopoverBottomPosition (pos.top, topOffset, cal_marg, _left);
+            this.setPopoverBottomPosition (pos.top, topOffset, calculatedMargin, _left);
           }
         }
       },
       
       setClickPopoverPosition() {
-
         if (this.Ptrigger == 'click') {
-          
           this.setPopoverPosition();
           this.togglePopover();
         }
@@ -229,42 +183,31 @@
       
       setHoverPopoverPosition() {
         if (this.Ptrigger == 'hover') {
-          
           this.setPopoverPosition();
         }
       },
       
       triggerHover(status) {
-
         if (this.Ptrigger == 'hover') {
-
           this.active = status;
         }
       },
       
       togglePopover() {
-
-        if (this.active) {
-        
-          return this.hidePopover();
-        }
-        return this.showPopover();
+        this[`${(this.active ? 'hide' : 'show')}Popover`]();
       },
       
       showPopover() {
-        
         this.active = true;
         setTimeout(() => document.getElementById('app').addEventListener('click',this.hidePopover), 0);
       },
       
       hidePopover() {
-        
         this.active = false;
         document.getElementById('app').removeEventListener('click',this.hidePopover);
       },
       
       emitActions(action) {
-
         this.$emit('action',{action,user});
       },
       
@@ -281,32 +224,25 @@
       },
       
       initPopTrigger() {
-
-        if (this.trigger_options.indexOf(this.trigger) != -1) {
-
+        if (this.triggerOptions.indexOf(this.trigger) != -1) {
           this.Ptrigger = this.trigger;
         }
       },
       
       initPopPosition() {
-
-        if (this.available_positions.indexOf(this.position) != -1) {
-
+        if (this.availablePositions.indexOf(this.position) != -1) {
           this.Ppos = this.position;
         }
       },
       
       initPopIsMobile() {
-
         this.isMobile = this.detectIfMobileOrTablet();
         if (this.isMobile) {
-
           this.Ptrigger = 'click';
         }
       },
       
       initKhPopover() {
-        
         this.putPopoverToBody();
         this.initPopTrigger();
         this.initPopPosition();
